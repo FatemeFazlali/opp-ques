@@ -1,12 +1,6 @@
 import re
-class account:
-     def __init__(self,username,password,phonrNumber,email) : 
-         self.username=usernameExpector(username)
-         self.password=password
-         self.phonrNumber=phonrNumber      
-         self.email=email
-
-     def usernameExpector(username):  
+class functionKeeper:
+    def usernameExpector(username):  
             usernametogather=username[0]+username[1]
             x=re.findall("[a-zA-Z]",usernametogather)
             if( len(username[0])==0 or len(username[1])==0 or len(x)==len(usernametogather) ):
@@ -16,7 +10,7 @@ class account:
                 return(EnteredUsernameInTwoLine)
                 
 
-     def passwordExpector(password):
+    def passwordExpector(password):
             passLowerCase=re.findall("[a-z]",password)
             passupperCase=re.findall("[A-Z]",password)
             passnumber=re.findall("[0-9]",password)
@@ -26,7 +20,7 @@ class account:
                 return(password)
                 
   
-     def phoneNumberExpector(phonrNumber):
+    def phoneNumberExpector(phonrNumber):
             if(phonrNumber[0]=="+"):
                 phonrNumber=phonrNumber[2:]
                 
@@ -38,18 +32,27 @@ class account:
                 return(phonrNumber)
                 
 
-     def emailExpector(email):
+    def emailExpector(email):
             regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
             if(re.fullmatch(regex, email) ):
                    return(email)
             else:
                 print("invalid phonrNumber")
-                
         
-             
+                
+class account:
+     def __init__(self,username,password,phonrNumber,email) : 
+         self.username=functionKeeper.usernameExpector(username)
+         self.password=functionKeeper.passwordExpector(password)
+         self.phonrNumber=functionKeeper.phoneNumberExpector(phonrNumber)      
+         self.email=functionKeeper.emailExpector(email)
+                 
 class site:
     def __init__(self,URL_adress,register_user,active_user) :
-        pass
+        self.register_user=[]
+        self.active_user=[]
+        self.URL_adress=URL_adress
+        
     def register():
         pass
     
@@ -73,6 +76,10 @@ firstRun= account(username,EnteredPassword,EnteredPhoneNumber,EnteredEmail)
 '''
 firstRun=account(["fatemeh","fazlali"],"12345678Aa","09184913796","fatemeh@gmail.com")
 firstRun.usernameExpector()
+
+
+
+
 
 
 
